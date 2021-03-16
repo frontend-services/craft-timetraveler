@@ -1,0 +1,44 @@
+{
+    "name": "matotominac/time-traveler",
+    "description": "Add the time zone control on user level",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "time traveler"
+    ],
+    "support": {
+        "docs": "https://github.com/frontend-services/craft-timetraveler/blob/master/README.md",
+        "issues": "https://github.com/frontend-services/craft-timetraveler/issues"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mato Tominac",
+            "homepage": "https://frontend.services/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "matotominac\\timetraveler\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Time Traveler",
+        "handle": "time-traveler",
+        "developer": "Mato Tominac",
+        "developerUrl": "https://frontend.services/",
+        "documentationUrl": "https://github.com/frontend-services/craft-timetraveler/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/frontend-services/craft-timetraveler/master/CHANGELOG.md",
+        "components": {
+            "timeZones": "matotominac\\timetraveler\\services\\TimeZones"
+        },
+        "class": "matotominac\\timetraveler\\TimeTraveler"
+    }
+}
