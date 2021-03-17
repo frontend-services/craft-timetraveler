@@ -14,10 +14,11 @@ To install the plugin either install it through Plugin Store or tell Composer to
 
 ## Time Traveler Overview
 
-Time Traveler will add these two features to your Craft installation
+Time Traveler will add these three features to your Craft installation
 
-1. Timezone field type with configurable list of timezones
-2. Set different system time zone for each user
+1. Change timezone for date and time fields
+2. Timezone field type with configurable list of timezones
+3. Set different system time zone for each user
 
 ## Configuring Time Traveler
 
