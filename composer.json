@@ -1,8 +1,8 @@
 {
     "name": "matotominac/time-traveler",
-    "description": "Add the time zone control on user level",
+    "description": "Add the time zone control in Craft CMS on user level",
     "type": "craft-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
         "craft",
         "cms",

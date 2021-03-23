@@ -1,6 +1,6 @@
 # Time Traveler plugin for Craft CMS 3.x
 
-Add the time zone control on user level
+Allow users to change the time zone.
 
 ## Requirements
 
@@ -14,15 +14,19 @@ To install the plugin either install it through Plugin Store or tell Composer to
 
 ## Time Traveler Overview
 
-Time Traveler will add these three features to your Craft installation
+With Time Traveler plugin your user will be able to change the system time zone. When they select a timezone all dates will instantly be shown in their selected time zone, no need for any extra frontend conversion. Also everything they post that includes time will be posted in their time zone and propery converted to system's time zone.
 
-1. Change timezone for date and time fields
-2. Timezone field type with configurable list of timezones
-3. Set different system time zone for each user
+![User timezone in Craft CMS](resources/img/user-profile-timezone-all.png) ![Filtered user timezone in Craft CMS](resources/img/user-profile-timezone-us.png)
+
+Plugin will also add a time zone dropdown for all time fields for easier date entering for different timezones.
+
+![Select time zone in time fields](resources/img/timezone-dropdowns-1.png)
+
+When you enable the plugin all possible timezones will be available in the dropdown but you are in total control of selecting which timezones will show and also to rename timezones in something fancier than default PHP timezone labels.
 
 ## Configuring Time Traveler
 
-Create a file called `time-traveler.php` in your Craft's config folder and paste the following code: 
+Create a file called `time-traveler.php` in your Craft's config folder and paste the following code.  
 ```injectablephp
 <?php
 
@@ -45,10 +49,12 @@ return [
 
 `timezoneList` option has the form `'[php time zone name]' => '[label]'`. List of all PHP time zones can be found [here](https://www.php.net/manual/en/timezones.php).
 
-### User timezone selection
+Two sample config files for US and Australian time zones are included in plugin's root folder, you can directly copy them to your Craft's config folder. Please do not forget to rename them to `time-traveler.php`.
+
+### User timezone selection instructions
 
 To allow users to select timezone follow these steps:
-1. Create a new field of type TimeZone. If your new field's handle is different from `timeZone` you will have to update option value `fieldName` in `time-traveler.php` config file.
+1. Create a new field of type TimeZone (this field type will be available when you enable the plugin). Plugin requires this field's handle to be set to `timeZone` but if you wish to have something different you will have to update the value of the option `fieldName` in your `time-traveler.php` config file (as shown in the snippet above).
 
 ![Screenshot](resources/img/new-field.png)
 
@@ -56,9 +62,18 @@ To allow users to select timezone follow these steps:
 
 ![Screenshot](resources/img/user-profile-fields.png)
 
-3. Now each user is allowed to select custom timezone. Timezone for the user will be changed for both frontend site and Craft admin, as long as the user is logged in.
+3. That's all. Now every user is allowed to select custom timezone. Timezone for the user will be changed for both frontend site and Craft admin, as long as the user is logged in.
 
 
+## FAQs
+### Will this plugin work on already developed sites or are there any twig modifications necessary?
+Yes, this plugin will work on any already existing site. All you need to do is enable the plugin, add the field to user's profile as described below and that's it, plugin will work out of the box, even on existing sites. No modifications are necesary in twig code for showing dates on frontend.
+
+### Can I add the time zone selection field to frontend user profile edit form?
+Absolutely. Time zone selection field is a field like any other custom field on user profile. Simply add the dropdown field with list of timezones and name it `fields[timeZone]` (or replace `timeZone` in case you renamed the field as shown above).
+
+### Can I allow unregistered users to select a time zone?
+Unfortunately not yet but that feature is on our roadmap.
 
 ## Time Traveler Roadmap
 
