@@ -12,42 +12,50 @@
 
 ;(function ( $, window, document, undefined ) {
 
-    var dateFields = '.input > .datewrapper, .input > .timewrapper, .datetimewrapper > .timewrapper',
-        selectOpenTag = '<div class="select" style="margin-left: 5px;"><select class="js--update-timezone">',
-        selectCloseTag = '</select></div>';
+    function appendTimezoneDropdowns() {
+        var dateFields = '.input > .timewrapper, .datetimewrapper > .timewrapper',
+            selectOpenTag = '<div class="select js--timezone-select" style="margin-left: 5px;"><select class="js--update-timezone">',
+            selectCloseTag = '</select></div>';
 
-    $(dateFields).each(function(){
-        var dateTimeWrapper = $(this).closest('.datetimewrapper');
+        $(dateFields).each(function(){
+            var dateTimeWrapper = $(this).closest('.datetimewrapper');
 
-        if (dateTimeWrapper.length) {
-            // Date and Time field
+            if (dateTimeWrapper.length) {
+                // Date and Time field
 
-            dateTimeWrapper = $(dateTimeWrapper[0]);
-            if (dateTimeWrapper.find('.js--update-timezone').length === 0) {
-                var html = selectOpenTag;
-                window.tttimezones.forEach(function(e){
-                    html += '<option value="'+e.timezone+'"'+(e.timezone==Craft.timezone?' selected':'')+'>'+e.label+'</option>';
-                });
-                html += selectCloseTag;
+                dateTimeWrapper = $(dateTimeWrapper[0]);
+                if (dateTimeWrapper.find('.js--timezone-select').length === 0) {
+                    var html = selectOpenTag;
+                    window.tttimezones.forEach(function(e){
+                        html += '<option value="'+e.timezone+'"'+(e.timezone==Craft.timezone?' selected':'')+'>'+e.label+'</option>';
+                    });
+                    html += selectCloseTag;
 
-                dateTimeWrapper.find('.timewrapper').after(html);
+                    dateTimeWrapper.find('.timewrapper').after(html);
+                }
+
+            } else {
+                // Only time field
+
+                if ($(this).siblings('.js--timezone-select').length === 0) {
+                    var html = selectOpenTag;
+                    window.tttimezones.forEach(function(e){
+                        html += '<option value="'+e.timezone+'"'+(e.timezone==Craft.timezone?' selected':'')+'>'+e.label+'</option>';
+                    });
+                    html += selectCloseTag;
+
+                    $(this).after(html);
+                }
             }
 
-        } else {
-            // Only date or time field
+        });
+    }
 
-            if ($(this).find('.js--update-timezone').length === 0) {
-                var html = selectOpenTag;
-                window.tttimezones.forEach(function(e){
-                    html += '<option value="'+e.timezone+'"'+(e.timezone==Craft.timezone?' selected':'')+'>'+e.label+'</option>';
-                });
-                html += selectCloseTag;
+    appendTimezoneDropdowns();
 
-                $(this).after(html);
-            }
-        }
-
-    });
+    setInterval(function(){
+        appendTimezoneDropdowns();
+    }, 1500);
 
     $(document).on('change', '.js--update-timezone', function(){
         var val = $(this).val();
