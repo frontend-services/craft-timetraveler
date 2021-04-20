@@ -12,8 +12,6 @@ namespace matotominac\timetraveler;
 
 use craft\events\TemplateEvent;
 use craft\web\View;
-use matotominac\timetraveler\assetbundles\timezonegeneral\TimeZoneGeneralAsset;
-use matotominac\timetraveler\services\TimeZones as TimeZonesService;
 use matotominac\timetraveler\fields\TimeZone as TimeZoneField;
 use matotominac\timetraveler\models\Settings;
 
@@ -129,14 +127,6 @@ class TimeTraveler extends Plugin
                 if ($event->plugin === $this) {
                     // We were just installed
                 }
-            }
-        );
-
-        Event::on(
-            View::class,
-            View::EVENT_BEFORE_RENDER_TEMPLATE,
-            function (TemplateEvent $event) {
-                Craft::$app->getView()->registerAssetBundle(TimeZoneGeneralAsset::class);
             }
         );
 
