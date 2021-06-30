@@ -10,7 +10,7 @@ This plugin requires Craft CMS 3.0.0-beta.23 or later.
 
 To install the plugin either install it through Plugin Store or tell Composer to load the plugin and then go to Settings → Plugins and click the “Install” button for Time Traveler.
 
-        composer require frontend-services/time-traveler
+        composer require matotominac/time-traveler
 
 ## Time Traveler Overview
 

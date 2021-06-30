@@ -136,7 +136,9 @@ class TimeTraveler extends Plugin
             View::class,
             View::EVENT_BEFORE_RENDER_TEMPLATE,
             function (TemplateEvent $event) {
-                Craft::$app->getView()->registerAssetBundle(TimeZoneGeneralAsset::class);
+				if (Craft::$app->getRequest()->getIsCpRequest()) {
+					Craft::$app->getView()->registerAssetBundle(TimeZoneGeneralAsset::class);
+				}
             }
         );
 
