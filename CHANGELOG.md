@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.4 - 2021-07-01
+### Changed
+- Code cleanup and minor fixes
+
+### Fixed
+- Readme.md composer instructions (thanks to [@swey](https://github.com/swey))
+
 ## 1.0.3 - 2021-04-20
 ### Changed
 - Removed timezone dropdown for regular Craft's Time/Date fields because this feature is announced in Craft CMS v3.7 - https://twitter.com/brandonkelly/status/1377027677920501760

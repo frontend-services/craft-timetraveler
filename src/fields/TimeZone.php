@@ -12,15 +12,9 @@ namespace matotominac\timetraveler\fields;
 
 use craft\fields\data\SingleOptionFieldData;
 use craft\fields\Dropdown;
-use craft\helpers\Html;
 use matotominac\timetraveler\TimeTraveler;
 
 use Craft;
-use craft\base\ElementInterface;
-use craft\base\Field;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Json;
 
 /**
  * TimeZone Field
@@ -107,12 +101,18 @@ class TimeZone extends Dropdown
             ]
         ];
 
-        foreach (TimeTraveler::getInstance()->getSettings()->getTimezoneList() as $timezone => $label) {
-            $this->options[] = [
-                'label' => $label,
-                'value' => $timezone,
-                'default' => $timezone == Craft::$app->getTimeZone() ? 1 : null
-            ];
+        $plugin = TimeTraveler::getInstance();
+        if ($plugin) {
+            $settings = $plugin->getSettings();
+            if ($settings) {
+                foreach ($settings->getTimezoneList() as $timezone => $label) {
+                    $this->options[] = [
+                        'label' => $label,
+                        'value' => $timezone,
+                        'default' => $timezone == Craft::$app->getTimeZone() ? 1 : null
+                    ];
+                }
+            }
         }
     }
 

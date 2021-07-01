@@ -38,7 +38,7 @@ use yii\base\Event;
  * @package   TimeTraveler
  * @since     1.0.0
  *
- * @property  TimeZonesService $timeZones
+ * @property  TimeTraveler $timeZones
  */
 class TimeTraveler extends Plugin
 {
@@ -95,15 +95,19 @@ class TimeTraveler extends Plugin
     {
         // Set correct Timezone
         $currentUser = Craft::$app->getUser();
-        $fieldName = $this->getSettings()->getFieldName();
+        $settings = $this->getSettings();
 
-        if ($currentUser->getIdentity()) {
-            $user = $currentUser->getIdentity();
-            $timezone = null;
+        if ($settings) {
+            $fieldName = $settings->getFieldName();
 
-            if (isset($user->{$fieldName}) && $user->{$fieldName}->value) $timezone = $user->{$fieldName}->value;
-            if ($timezone) {
-                Craft::$app->setTimeZone($timezone);
+            if ($currentUser->getIdentity()) {
+                $user = $currentUser->getIdentity();
+                $timezone = null;
+
+                if (isset($user->{$fieldName}) && $user->{$fieldName}->value) $timezone = $user->{$fieldName}->value;
+                if ($timezone) {
+                    Craft::$app->setTimeZone($timezone);
+                }
             }
         }
 
@@ -116,17 +120,6 @@ class TimeTraveler extends Plugin
             Fields::EVENT_REGISTER_FIELD_TYPES,
             function (RegisterComponentTypesEvent $event) {
                 $event->types[] = TimeZoneField::class;
-            }
-        );
-
-        // Do something after we're installed
-        Event::on(
-            Plugins::class,
-            Plugins::EVENT_AFTER_INSTALL_PLUGIN,
-            function (PluginEvent $event) {
-                if ($event->plugin === $this) {
-                    // We were just installed
-                }
             }
         );
 

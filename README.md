@@ -10,19 +10,15 @@ This plugin requires Craft CMS 3.0.0-beta.23 or later.
 
 To install the plugin either install it through Plugin Store or tell Composer to load the plugin and then go to Settings → Plugins and click the “Install” button for Time Traveler.
 
-        composer require frontend-services/time-traveler
+        composer require matotominac/time-traveler
 
 ## Time Traveler Overview
 
-With Time Traveler plugin your user will be able to change the system time zone. When they select a timezone all dates will instantly be shown in their selected time zone, no need for any extra frontend conversion. Also everything they post that includes time will be posted in their time zone and propery converted to system's time zone.
+With Time Traveler plugin users will be able to select a timezone for their user account. When they select a timezone all dates will instantly be shown in their selected time zone, no need for any extra frontend conversion. Also everything they post that includes time will be posted in their time zone and propery converted to system's time zone.
 
 ![User timezone in Craft CMS](resources/img/user-profile-timezone-all.png) ![Filtered user timezone in Craft CMS](resources/img/user-profile-timezone-us.png)
 
-Plugin will also add a time zone dropdown for all time fields for easier date entering for different timezones.
-
-![Select time zone in time fields](resources/img/timezone-dropdowns-1.png)
-
-When you enable the plugin all possible timezones will be available in the dropdown but you are in total control of selecting which timezones will show and also to rename timezones in something fancier than default PHP timezone labels.
+When you enable the plugin all timezones will be available in the dropdown but you are in total control of selecting which timezones will show and you can also rename timezones to something nicer than default PHP timezone labels.
 
 ## Configuring Time Traveler
 
